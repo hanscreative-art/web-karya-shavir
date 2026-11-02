@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARYA SHAVIR SABLON - Professional Custom Apparel</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="bg-slate-950 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Logo & Brand Name -->
+            <div class="flex items-center space-x-3">
+                <div class="w-11 h-11 rounded-xl overflow-hidden shadow-lg shadow-indigo-600/20 bg-slate-900 border border-slate-700 flex items-center justify-center">
+                    <img src="https://raw.githubusercontent.com/hanscreative-art/FOLDER-IMAGE-KAOS/b7c9878a13174d3339706f0fdc72c9a14846cab2/Logo%20Shope.png" alt="Logo Karya Shavir Sablon" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-tight text-white uppercase">KARYA SHAVIR SABLON</h1>
+                    <p class="text-xs text-slate-400 font-medium">Professional Custom Apparel</p>
+                </div>
+            </div>
+
+            <!-- Media Sosial (Tombol Pengaturan Harga Sudah Dihapus) -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 pr-3 mr-1">
+                    <a href="https://www.facebook.com/share/1Ref3xKjNV/" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500 transition" title="Facebook">
+                        <i class="fa-brands fa-facebook-f text-sm"></i>
+                    </a>
+                    <a href="https://www.instagram.com/shavirsablon?exln=MXdnenIwMm9sZnlsYg==" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-pink-500 hover:border-pink-500 transition" title="Instagram">
+                        <i class="fa-brands fa-instagram text-sm"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@karyashavir?_r=1&_t=ZS-9B2POBe5PDJ" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:border-cyan-400 transition" title="TikTok">
+                        <i class="fa-brands fa-tiktok text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8 w-full">
+        
+        <!-- KOLOM KIRI: VISUAL MOCKUP KAOS -->
+        <div class="lg:col-span-6 flex flex-col items-center justify-center bg-slate-950/60 p-6 rounded-3xl border border-slate-800/80 relative shadow-xl min-h-[580px]">
+            <div class="absolute top-4 left-4 z-10 flex bg-slate-900 p-1 rounded-xl border border-slate-800">
+                <button onclick="setSide('front')" id="btn-side-front" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white transition">Depan</button>
+                <button onclick="setSide('back')" id="btn-side-back" class="px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition">Belakang</button>
+            </div>
+
+            <div class="relative w-full max-w-lg h-[500px] flex items-center justify-center my-auto">
+                <img id="design-preview" src="" alt="Mockup Custom Kaos" class="w-full h-full max-h-[480px] object-contain drop-shadow-2xl transition-all duration-300">
+            </div>
+
+            <div class="w-full bg-slate-900/80 rounded-2xl p-4 border border-slate-800/80 flex justify-between items-center text-sm mt-4">
+                <div>
+                    <span class="text-slate-400 block text-xs">Warna Kaos:</span>
+                    <span id="info-color-name" class="font-semibold text-white">Burgundy</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-xs">Model Lengan:</span>
+                    <span id="info-sleeve-name" class="font-semibold text-white">Lengan Pendek</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-xs">Area Cetak:</span>
+                    <span id="info-print-size" class="font-semibold text-indigo-400">A4</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- KOLOM KANAN: PANEL KONFIGURASI & KALKULATOR -->
+        <div class="lg:col-span-6 flex flex-col space-y-6">
+            
+            <!-- Pilihan Warna Kaos (35 VARIAN WARNA) -->
+            <div class="bg-slate-950/60 p-5 rounded-3xl border border-slate-800/80 shadow-lg">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-sm font-semibold text-slate-300 flex items-center gap-2">
+                        <i class="fa-solid fa-palette text-indigo-400"></i> 1. Pilih Warna Kaos
+                    </h3>
+                    <span id="selected-color-label" class="text-xs font-bold text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-lg border border-indigo-500/20">Burgundy</span>
+                </div>
+                <div class="grid grid-cols-7 sm:grid-cols-9 gap-2.5 max-h-48 overflow-y-auto pr-1" id="color-picker-container"></div>
+            </div>
+
+            <!-- Pilihan Model Lengan & Bahan Combed -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-slate-950/60 p-5 rounded-3xl border border-slate-800/80 shadow-lg">
+                    <h3 class="text-sm font-semibold text-slate-300 mb-3">Model Lengan</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="setSleeve('short')" id="btn-sleeve-short" class="p-2.5 text-xs font-semibold rounded-xl border border-indigo-600 bg-indigo-600/20 text-indigo-300 transition">Pendek</button>
+                        <button onclick="setSleeve('long')" id="btn-sleeve-long" class="p-2.5 text-xs font-semibold rounded-xl border border-slate-700 bg-slate-900 text-slate-400 transition">Panjang (+Rp 5k)</button>
+                    </div>
+                </div>
+                <div class="bg-slate-950/60 p-5 rounded-3xl border border-slate-800/80 shadow-lg">
+                    <h3 class="text-sm font-semibold text-slate-300 mb-3">Bahan Cotton Combed</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="setMaterial('30s')" id="btn-mat-30s" class="p-2.5 text-xs font-semibold rounded-xl border border-indigo-600 bg-indigo-600/20 text-indigo-300 transition">Combed 30s</button>
+                        <button onclick="setMaterial('24s')" id="btn-mat-24s" class="p-2.5 text-xs font-semibold rounded-xl border border-slate-700 bg-slate-900 text-slate-400 transition">Combed 24s (+Rp 7k)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ukuran Area Cetak DTF -->
+            <div class="bg-slate-950/60 p-5 rounded-3xl border border-slate-800/80 shadow-lg">
+                <h3 class="text-sm font-semibold text-slate-300 mb-2">Ukuran & Area Cetak DTF</h3>
+                <div class="grid grid-cols-3 sm:grid-cols-6 gap-2" id="print-size-container"></div>
+            </div>
+
+            <!-- TABEL JUMLAH PESANAN PER UKURAN KAOS -->
+            <div class="bg-slate-950/60 p-5 rounded-3xl border border-slate-800/80 shadow-lg space-y-3">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-sm font-semibold text-slate-300">Rincian Ukuran Kaos & Jumlah</h3>
+                        <p class="text-xs text-slate-400">Masukkan jumlah pcs untuk masing-masing ukuran</p>
+                    </div>
+                    <span id="discount-badge" class="text-xs bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-md font-medium hidden">Diskon Grosir Aktif!</span>
+                </div>
+                <div class="grid grid-cols-3 sm:grid-cols-6 gap-3 pt-2" id="size-qty-container"></div>
+            </div>
+
+            <!-- RINGKASAN & TOMBOL PESAN WHATSAPP -->
+            <div class="bg-slate-950 p-6 rounded-3xl border border-indigo-500/30 shadow-2xl flex flex-col space-y-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <span class="text-xs text-slate-400 block">Total Pesanan: <b id="total-pcs-text" class="text-white">0 Pcs</b></span>
+                        <h2 id="total-price-text" class="text-2xl font-extrabold text-white">Rp 0</h2>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-slate-400 block">Status Diskon Grosir</span>
+                        <span id="discount-rate-text" class="text-sm font-semibold text-emerald-400">Harga Normal</span>
+                    </div>
+                </div>
+
+                <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg shadow-emerald-600/30 transition flex items-center justify-center gap-2 text-base">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Pesan via WhatsApp Sekarang
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SEKSI KOMUNITAS / LEMBAGA YANG SUDAH PERCAYA -->
+    <section class="max-w-7xl mx-auto px-4 py-10 w-full border-t border-slate-800/80 mt-6">
+        <div class="text-center mb-8">
+            <h2 class="text-lg font-bold text-white uppercase tracking-wider">Telah Dipercaya Oleh Lembaga & Komunitas</h2>
+            <p class="text-xs text-slate-400 mt-1">Mitra setia yang mempercayakan pembuatan kaos & sablon kepada Karya Shavir Sablon</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            <div class="bg-slate-950/40 border border-slate-800/80 rounded-2xl p-4 flex flex-col items-center justify-center text-center space-y-2 hover:border-indigo-500/50 transition">
+                <i class="fa-solid fa-graduation-cap text-2xl text-indigo-400"></i>
+                <span class="text-xs font-semibold text-slate-300">OSIS & Ekstrakulikuler</span>
+            </div>
+            <div class="bg-slate-950/40 border border-slate-800/80 rounded-2xl p-4 flex flex-col items-center justify-center text-center space-y-2 hover:border-indigo-500/50 transition">
+                <i class="fa-solid fa-building text-2xl text-indigo-400"></i>
+                <span class="text-xs font-semibold text-slate-300">Instansi / Perusahaan</span>
+            </div>
+            <div class="bg-slate-950/40 border border-slate-800/80 rounded-2xl p-4 flex flex-col items-center justify-center text-center space-y-2 hover:border-indigo-500/50 transition">
+                <i class="fa-solid fa-motorcycle text-2xl text-indigo-400"></i>
+                <span class="text-xs font-semibold text-slate-300">Komunitas Otomotif</span>
+            </div>
+            <div class="bg-slate-950/40 border border-slate-800/80 rounded-2xl p-4 flex flex-col items-center justify-center text-center space-y-2 hover:border-indigo-500/50 transition">
+                <i class="fa-solid fa-people-group text-2xl text-indigo-400"></i>
+                <span class="text-xs font-semibold text-slate-300">Karang Taruna</span>
+            </div>
+            <div class="bg-slate-950/40 border border-slate-800/80 rounded-2xl p-4 flex flex-col items-center justify-center text-center space-y-2 hover:border-indigo-500/50 transition">
+                <i class="fa-solid fa-futbol text-2xl text-indigo-400"></i>
+                <span class="text-xs font-semibold text-slate-300">Klub Olahraga / Futsal</span>
+            </div>
+            <div class="bg-slate-950/40 border border-slate-800/80 rounded-2xl p-4 flex flex-col items-center justify-center text-center space-y-2 hover:border-indigo-500/50 transition">
+                <i class="fa-solid fa-store text-2xl text-indigo-400"></i>
+                <span class="text-xs font-semibold text-slate-300">Brand Clothing Local</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        <p>&copy; Karya Shavir Sablon - Professional Custom Apparel. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT UTAMA -->
+    <script>
+        const customDesignLinks = {
+            'Logo': "https://raw.githubusercontent.com/hanscreative-art/FOLDER-IMAGE-KAOS/2a30ad0fffd7b2cbd63742b2d83e4081ab344d51/5.png",
+            'A5':   "https://raw.githubusercontent.com/hanscreative-art/FOLDER-IMAGE-KAOS/2a30ad0fffd7b2cbd63742b2d83e4081ab344d51/6.png",
+            'A4':   "https://raw.githubusercontent.com/hanscreative-art/FOLDER-IMAGE-KAOS/2a30ad0fffd7b2cbd63742b2d83e4081ab344d51/4.png",
+            'A3':   "https://raw.githubusercontent.com/hanscreative-art/FOLDER-IMAGE-KAOS/2a30ad0fffd7b2cbd63742b2d83e4081ab344d51/3.png",
+            'A3+':  "https://raw.githubusercontent.com/hanscreative-art/FOLDER-IMAGE-KAOS/2a30ad0fffd7b2cbd63742b2d83e4081ab344d51/2.png",
+            'A2':   "https://raw.githubusercontent.com/hanscreative-art/FOLDER-IMAGE-KAOS/2a30ad0fffd7b2cbd63742b2d83e4081ab344d51/1.png"
+        };
+
+        let currentDesignUrl = customDesignLinks['A4'];
+
+        // PENGATURAN HARGA UTAMA (Ubah harga langsung di sini)
+        let prices = {
+            baseTshirt: 45000,
+            sleeveLong: 5000,
+            material24s: 7000,
+            wholesale: { min12: 5, min24: 10, min50: 15 },
+            sizes: { 'S': 0, 'M': 0, 'L': 0, 'XL': 0, 'XXL': 5000, '3XL': 10000 },
+            printSizes: {
+                'Logo': 10000,
+                'A5': 15000,
+                'A4': 20000,
+                'A3': 27000,
+                'A3+': 35000,
+                'A2': 40000
+            }
+        };
+
+        let sizeQuantities = { 'S': 0, 'M': 1, 'L': 0, 'XL': 0, 'XXL': 0, '3XL': 0 };
+
+        // 35 PILIHAN WARNA LENGKAP COMBED 24S
+        const colors = [
+            { name: "Burgundy", hex: "#4a1223", border: "#6b1d35" },
+            { name: "Maroon", hex: "#7a0c1a", border: "#a31225" },
+            { name: "Merah", hex: "#d91424", border: "#f22c3e" },
+            { name: "Blush Red", hex: "#b5525b", border: "#d66f78" },
+            { name: "Pink Soft", hex: "#f0b4c8", border: "#f7cbd8" },
+            { name: "Pink Salem", hex: "#ee939d", border: "#f5b5bd" },
+            { name: "Dusty Pink", hex: "#e5b8b7", border: "#edd3d2" },
+
+            { name: "Salmon Red", hex: "#e85d68", border: "#f27983" },
+            { name: "Pink Fanta", hex: "#e4007f", border: "#ff2ba4" },
+            { name: "Kuning Kenari", hex: "#ffe600", border: "#fff066" },
+            { name: "Kuning Busuk", hex: "#d4a017", border: "#e8b835" },
+            { name: "Mustard", hex: "#e59b00", border: "#ffb41f" },
+            { name: "Orange", hex: "#ff5500", border: "#ff7733" },
+            { name: "Cream", hex: "#f3eed9", border: "#f9f6e8" },
+
+            { name: "Beige", hex: "#e3c9a8", border: "#ebd9c2" },
+            { name: "Coklat Susu", hex: "#a67c52", border: "#bf986e" },
+            { name: "Orange Bata", hex: "#c44100", border: "#e65512" },
+            { name: "Cinnamon", hex: "#8c3b1b", border: "#a84b25" },
+            { name: "Electric Lime", hex: "#bfff00", border: "#d4ff55" },
+            { name: "Hijau Pucuk", hex: "#7fff00", border: "#a2ff42" },
+            { name: "Hijau Fuji", hex: "#009933", border: "#1ec253" },
+
+            { name: "Hijau Botol", hex: "#0f3b25", border: "#1b593a" },
+            { name: "Hijau Army", hex: "#4b5320", border: "#687330" },
+            { name: "Sage Green", hex: "#8a9a86", border: "#a7b5a3" },
+            { name: "Tosca", hex: "#009688", border: "#18b5a5" },
+            { name: "Tosca Muda", hex: "#4db6ac", border: "#7ecbc3" },
+            { name: "Sky Blue", hex: "#a0c8e6", border: "#c3e0f5" },
+            { name: "Turkis", hex: "#00a8e8", border: "#33beff" },
+
+            { name: "Steel Blue", hex: "#4682b4", border: "#6aa0cb" },
+            { name: "Deep Blue", hex: "#1c3f60", border: "#2d5e8c" },
+            { name: "Navy", hex: "#000040", border: "#0f0f6b" },
+            { name: "Benhur", hex: "#0022b8", border: "#2b4cff" },
+            { name: "Lilac", hex: "#c8a2c8", border: "#d8b6d8" },
+            { name: "Ungu Terong", hex: "#4b0082", border: "#6c13b3" },
+            { name: "Hitam", hex: "#111111", border: "#333333" },
+
+            { name: "Abu Muda", hex: "#c0c0c0", border: "#dcdcdc" },
+            { name: "Abu Misty", hex: "#a9a9a9", border: "#c0c0c0" },
+            { name: "Abu Tua", hex: "#555555", border: "#777777" },
+            { name: "Putih", hex: "#ffffff", border: "#e0e0e0" }
+        ];
+
+        let state = {
+            color: colors[0],
+            sleeve: 'short',
+            material: '30s',
+            printSize: 'A4',
+            side: 'front'
+        };
+
+        function initApp() {
+            renderColors();
+            renderSizeQtyInputs();
+            renderPrintSizes();
+            updateDesignPreview();
+            calculateTotal();
+        }
+
+        function renderColors() {
+            const container = document.getElementById('color-picker-container');
+            container.innerHTML = colors.map((c, idx) => `
+                <button onclick="setColor(${idx})" class="w-7 h-7 rounded-full border-2 transition-all transform hover:scale-125 ${state.color.name === c.name ? 'ring-2 ring-indigo-500 ring-offset-2 ring-offset-slate-900 scale-125 z-10' : ''}" style="background-color: ${c.hex}; border-color: ${c.border};" title="${c.name}"></button>
+            `).join('');
+        }
+
+        function renderSizeQtyInputs() {
+            const container = document.getElementById('size-qty-container');
+            container.innerHTML = Object.keys(prices.sizes).map(size => {
+                const extraPrice = prices.sizes[size] > 0 ? ` (+${prices.sizes[size]/1000}k)` : '';
+                return `
+                    <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800 flex flex-col items-center">
+                        <label class="text-xs font-bold text-indigo-300 mb-1">${size}${extraPrice}</label>
+                        <input type="number" min="0" value="${sizeQuantities[size]}" oninput="updateSizeQty('${size}', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg py-1 px-2 text-center text-white text-sm font-semibold focus:outline-none focus:border-indigo-500">
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateSizeQty(size, val) {
+            let qty = parseInt(val) || 0;
+            if (qty < 0) qty = 0;
+            sizeQuantities[size] = qty;
+            calculateTotal();
+        }
+
+        function renderPrintSizes() {
+            const container = document.getElementById('print-size-container');
+            container.innerHTML = Object.keys(prices.printSizes).map(ps => `
+                <button onclick="setPrintSize('${ps}')" id="print-btn-${ps}" class="p-2.5 text-xs font-semibold rounded-xl border transition text-center ${state.printSize === ps ? 'border-indigo-600 bg-indigo-600/20 text-indigo-300' : 'border-slate-700 bg-slate-900 text-slate-400 hover:text-white'}">${ps}</button>
+            `).join('');
+        }
+
+        function setColor(idx) {
+            state.color = colors[idx];
+            document.getElementById('info-color-name').innerText = state.color.name;
+            document.getElementById('selected-color-label').innerText = state.color.name;
+            renderColors();
+        }
+
+        function setSleeve(type) {
+            state.sleeve = type;
+            const isShort = type === 'short';
+            document.getElementById('info-sleeve-name').innerText = isShort ? 'Lengan Pendek' : 'Lengan Panjang';
+            
+            document.getElementById('btn-sleeve-short').className = `p-2.5 text-xs font-semibold rounded-xl border transition ${isShort ? 'border-indigo-600 bg-indigo-600/20 text-indigo-300' : 'border-slate-700 bg-slate-900 text-slate-400'}`;
+            document.getElementById('btn-sleeve-long').className = `p-2.5 text-xs font-semibold rounded-xl border transition ${!isShort ? 'border-indigo-600 bg-indigo-600/20 text-indigo-300' : 'border-slate-700 bg-slate-900 text-slate-400'}`;
+            calculateTotal();
+        }
+
+        function setMaterial(mat) {
+            state.material = mat;
+            const is30s = mat === '30s';
+            document.getElementById('btn-mat-30s').className = `p-2.5 text-xs font-semibold rounded-xl border transition ${is30s ? 'border-indigo-600 bg-indigo-600/20 text-indigo-300' : 'border-slate-700 bg-slate-900 text-slate-400'}`;
+            document.getElementById('btn-mat-24s').className = `p-2.5 text-xs font-semibold rounded-xl border transition ${!is30s ? 'border-indigo-600 bg-indigo-600/20 text-indigo-300' : 'border-slate-700 bg-slate-900 text-slate-400'}`;
+            calculateTotal();
+        }
+
+        function setPrintSize(ps) {
+            state.printSize = ps;
+            document.getElementById('info-print-size').innerText = ps;
+            if (customDesignLinks[ps]) {
+                currentDesignUrl = customDesignLinks[ps];
+            }
+            renderPrintSizes();
+            updateDesignPreview();
+            calculateTotal();
+        }
+
+        function setSide(side) {
+            state.side = side;
+            const isFront = side === 'front';
+            document.getElementById('btn-side-front').className = `px-3 py-1.5 text-xs font-semibold rounded-lg transition ${isFront ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'}`;
+            document.getElementById('btn-side-back').className = `px-3 py-1.5 text-xs font-semibold rounded-lg transition ${!isFront ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'}`;
+        }
+
+        function updateDesignPreview() {
+            const previewImg = document.getElementById('design-preview');
+            previewImg.src = currentDesignUrl;
+        }
+
+        function calculateTotal() {
+            let baseItemPrice = prices.baseTshirt;
+            if (state.sleeve === 'long') baseItemPrice += prices.sleeveLong;
+            if (state.material === '24s') baseItemPrice += prices.material24s;
+            baseItemPrice += prices.printSizes[state.printSize] || 0;
+
+            let totalPcs = 0;
+            let subtotal = 0;
+
+            for (let sz in sizeQuantities) {
+                let qty = sizeQuantities[sz];
+                if (qty > 0) {
+                    totalPcs += qty;
+                    let singleShirtPrice = baseItemPrice + (prices.sizes[sz] || 0);
+                    subtotal += singleShirtPrice * qty;
+                }
+            }
+
+            let discountPercent = 0;
+            const badge = document.getElementById('discount-badge');
+            const discountRateText = document.getElementById('discount-rate-text');
+
+            if (totalPcs >= 50) {
+                discountPercent = prices.wholesale.min50;
+                badge.classList.remove('hidden');
+                badge.innerText = `Diskon Grosir ${discountPercent}% Aktif!`;
+                discountRateText.innerText = `Hemat ${discountPercent}%`;
+            } else if (totalPcs >= 24) {
+                discountPercent = prices.wholesale.min24;
+                badge.classList.remove('hidden');
+                badge.innerText = `Diskon Grosir ${discountPercent}% Aktif!`;
+                discountRateText.innerText = `Hemat ${discountPercent}%`;
+            } else if (totalPcs >= 12) {
+                discountPercent = prices.wholesale.min12;
+                badge.classList.remove('hidden');
+                badge.innerText = `Diskon Grosir ${discountPercent}% Aktif!`;
+                discountRateText.innerText = `Hemat ${discountPercent}%`;
+            } else {
+                badge.classList.add('hidden');
+                discountRateText.innerText = `Harga Normal`;
+            }
+
+            let totalPrice = Math.round(subtotal * ((100 - discountPercent) / 100));
+
+            document.getElementById('total-pcs-text').innerText = `${totalPcs} Pcs`;
+            document.getElementById('total-price-text').innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+        }
+
+        function checkoutWhatsApp() {
+            let totalPcs = 0;
+            let sizeDetails = [];
+
+            for (let sz in sizeQuantities) {
+                if (sizeQuantities[sz] > 0) {
+                    totalPcs += sizeQuantities[sz];
+                    sizeDetails.push(`${sz}: ${sizeQuantities[sz]} pcs`);
+                }
+            }
+
+            if (totalPcs === 0) {
+                alert("Silakan masukkan jumlah pesanan minimal 1 pcs pada salah satu ukuran kaos!");
+                return;
+            }
+
+            const total = document.getElementById('total-price-text').innerText;
+            const discountStatus = document.getElementById('discount-rate-text').innerText;
+
+            let message = `Halo Kak, saya ingin memesan kaos custom DTF di *Karya Shavir Sablon* dengan rincian berikut:%0A%0A` +
+                          `- *Warna Kaos:* ${state.color.name}%0A` +
+                          `- *Model Lengan:* ${state.sleeve === 'short' ? 'Pendek' : 'Panjang'}%0A` +
+                          `- *Bahan:* Cotton Combed ${state.material}%0A` +
+                          `- *Area Cetak:* ${state.printSize} (${state.side.toUpperCase()})%0A` +
+                          `- *Rincian Ukuran:* ${sizeDetails.join(', ')}%0A` +
+                          `- *Total Pesanan:* ${totalPcs} pcs%0A` +
+                          `- *Status Harga:* ${discountStatus}%0A` +
+                          `- *Total Estimasi:* ${total}%0A%0A` +
+                          `Berikut saya lampirkan desain saya. Mohon info selanjutnya, terima kasih!`;
+
+            const phone = "6282140016300";
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
